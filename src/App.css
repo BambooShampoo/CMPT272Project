@@ -1,1 +1,11 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Noto Sans, sans-serif;
+}
 
+.title {
+  margin-top: 1em;
+  text-align: center;
+  color: #055C9D;
+}

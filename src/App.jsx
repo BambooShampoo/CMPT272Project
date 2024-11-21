@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <p>Start the project!!!</p>
+      <h1 className="title">E-Comm</h1>
     </>
   )
 }
