@@ -9,3 +9,31 @@
   text-align: center;
   color: #055C9D;
 }
+
+.map {
+  margin: 1em;
+  display: flex;
+  align-items: center;
+}
+
+.map img {
+  flex-grow: 1;
+}
+
+.list {
+  margin: 1em;
+}
+
+.emergencies {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  color: #055C9D;
+  font-weight: bold;
+}
+
+.emergencies li {
+  padding: 1em;
+  border: 1px solid #055C9D;
+}
