@@ -24,9 +24,14 @@ body {
 }
 
 .map-container {
-  margin: 20px auto 40px;
+  flex-grow: 1;
+
+  margin-top: 20px;
+  margin-bottom: 40px;
+
   overflow: hidden;
 
+  box-sizing: border-box;
   width: 100%;
   max-width: 800px; 
   height: 600px;
@@ -37,8 +42,13 @@ body {
 }
 
 .emergency-report {
+  flex-grow: 1;
+
   margin: 1em;
   padding: 1em;
+
+  box-sizing: border-box;
+  height: 600px;
 
   border-radius: 0.8em;
 
