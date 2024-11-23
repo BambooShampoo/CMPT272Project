@@ -17,6 +17,9 @@ function App() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
+            <Marker position={[49.278376, -122.916997]}>
+              {/* Put markers and stuff here */}
+            </Marker>
           </MapContainer>
         </div>
         <form className='emergency-report'>

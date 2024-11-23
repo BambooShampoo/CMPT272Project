@@ -25,7 +25,7 @@ body {
   justify-content: center;
   gap: 1em;
 
-  margin: 1em;
+  margin: 4em 12em;
 }
 
 .map-container {
@@ -35,7 +35,7 @@ body {
 
   box-sizing: border-box;
   width: 100%;
-  max-width: calc(2 / 3 * 100vw); 
+  max-width: calc(1 / 2 * 100vw); 
   height: 600px;
 
   border: 2px solid #ccc; 
@@ -59,16 +59,17 @@ body {
 }
 
 .list {
-  margin: 1em;
+  margin: 4em;
 }
 
 .emergencies {
-  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1em;
+
   color: #246CA6;
   font-weight: bold;
+  list-style: none;
 }
 
 .emergencies li {
