@@ -75,3 +75,46 @@ body {
   border-radius: 0.8em;
   background-color: white;
 }
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  padding: 20px 20px;
+  border-bottom: 8px solid #0b4472;
+  border-top: 8px solid #0b4472;
+}
+
+#header h2 {
+  color: white;
+  -webkit-text-stroke: 1px black;
+  font-size:32px;
+  color: white;
+  text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+
+#header a {
+  font-size: larger;
+  -webkit-text-stroke: 1px black;
+   color: white;
+   text-shadow:
+       3px 3px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;
+}
+
+#header a:hover {
+  color: gray;
+}
