@@ -21,19 +21,21 @@ body {
 
 .map-and-form-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+
+  margin: 1em;
 }
 
 .map-container {
   flex-grow: 1;
 
-  margin-top: 20px;
-  margin-bottom: 40px;
-
   overflow: hidden;
 
   box-sizing: border-box;
   width: 100%;
-  max-width: 800px; 
+  max-width: calc(2 / 3 * 100vw); 
   height: 600px;
 
   border: 2px solid #ccc; 
@@ -44,7 +46,6 @@ body {
 .emergency-report {
   flex-grow: 1;
 
-  margin: 1em;
   padding: 1em;
 
   box-sizing: border-box;
@@ -82,7 +83,6 @@ body {
   align-items: center;
   background-color: white;
   margin: 0;
-  position: sticky;
   top: 0;
   z-index: 99;
   padding: 20px 20px;
