@@ -17,13 +17,16 @@
 }
 
 .map {
-  margin: 1em;
-  display: flex;
-  align-items: center;
-}
+  margin: 20px auto;
+  overflow: hidden;
 
-.map img {
-  flex-grow: 1;
+  width: 100%;
+  max-width: 800px; 
+  height: 600px;
+
+  border: 2px solid #ccc; 
+  border-radius: 15px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .list {
@@ -43,11 +46,4 @@
   padding: 1em;
   border-radius: 0.8em;
   background-color: white;
-}
-
-.map {
-  border-radius: 25px;
-  margin: 20px auto;
-  width: 80%;
-  height: 400px;
 }
