@@ -58,6 +58,8 @@ Clone Repository -> Switch into CMPT272Project directory
 ### Install required dependencies
 ```
 npm install
+npm install leaflet
+npm install react-leaflet
 ```  
 
 ### Start the program
