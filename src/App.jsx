@@ -8,8 +8,8 @@ function App() {
     <>
       <h1 className="title">E-Comm</h1>
 
-      <div className="map">
-        <MapContainer center={[49.275923, -122.913254]} zoom={10} style={{ height: '100%', width: '100%'}}>
+      <div className="map-container">
+        <MapContainer className='map' center={[49.275923, -122.913254]} zoom={10} style={{ height: '100%', width: '100%'}}>
           {/* adapted from https://leafletjs.com/examples/quick-start/ */}
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
