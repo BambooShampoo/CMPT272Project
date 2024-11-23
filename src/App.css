@@ -1,6 +1,6 @@
 /* Colours used:
- * #2c82c9 blue
- * #246CA6 darker blue
+ * #2c82c9 blue for background
+ * #246CA6 darker blue for text
  */
 
 * {
@@ -19,6 +19,10 @@ body {
   color: white;
 }
 
+.map-and-form-container {
+  display: flex;
+}
+
 .map-container {
   margin: 20px auto 40px;
   overflow: hidden;
@@ -30,6 +34,17 @@ body {
   border: 2px solid #ccc; 
   border-radius: 15px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emergency-report {
+  margin: 1em;
+  padding: 1em;
+
+  border-radius: 0.8em;
+
+  font-weight: bold;
+  color: #246CA6;
+  background-color: white;
 }
 
 .list {
