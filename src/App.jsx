@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
+import Header from "./components/Header.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 
 function App() {
   return (
     <>
-      <h1 className="title">E-Comm</h1>
+      <Header />
 
       <div className="map-container">
         <MapContainer className='map' center={[49.275923, -122.913254]} zoom={10} style={{ height: '100%', width: '100%'}}>
