@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./components/Header.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
+import Form from './components/Form.jsx';
 
 function App() {
   return (
@@ -22,9 +23,7 @@ function App() {
             </Marker>
           </MapContainer>
         </div>
-        <form className='emergency-report'>
-          <p>Form is here</p>
-        </form>
+        <Form />
       </div>
 
       <section className="list">
