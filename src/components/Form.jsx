@@ -18,7 +18,11 @@ function Form() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add logic to handle form submission here
+        const submissionData = {
+            ...formData,
+            time: new Date().toISOString(), // Logs the current date and time in ISO format
+            status: "OPEN", // Status set to 'OPEN'
+          };
         console.log('Form submitted:', formData);
         alert('Emergency report submitted!');
         };
