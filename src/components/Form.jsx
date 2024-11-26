@@ -22,8 +22,8 @@ function Form() {
             ...formData,
             time: new Date().toISOString(), // Logs the current date and time in ISO format
             status: "OPEN", // Status set to 'OPEN'
-          };
-        console.log('Form submitted:', formData);
+        };
+        console.log('Form submitted:', submissionData);
         alert('Emergency report submitted!');
         };
 
