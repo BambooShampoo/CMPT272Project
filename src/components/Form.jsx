@@ -23,7 +23,8 @@ function Form() {
             time: new Date().toISOString(), // Logs the current date and time in ISO format
             status: "OPEN", // Status set to 'OPEN'
         };
-        console.log('Form submitted:', submissionData);
+        // console.log('Form submitted:', submissionData);
+        localStorage.setItem('emergency', JSON.stringify(submissionData));
         alert('Emergency report submitted!');
         };
 
