@@ -4,6 +4,7 @@ import Header from "./components/Header.jsx";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 import Form from './components/Form.jsx';
+import EmergencyList from "./components/EmergencyList";
 
 function App() {
   return (
@@ -25,14 +26,7 @@ function App() {
         </div>
         <Form />
       </div>
-
-      <section className="list">
-        <ul className="emergencies">
-          <li>Emergency 1 Component</li>
-          <li>Emergency 2 Component</li>
-          <li>Emergency 3 Component</li>
-        </ul>
-      </section>
+      <EmergencyList />
     </>
   );
 }
