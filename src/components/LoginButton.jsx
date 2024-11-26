@@ -3,8 +3,8 @@ import React from "react";
 
 function LoginButton() {
     return(
-        <button>
-            LOGIN
+        <button className="login-button">
+            Operator Login
         </button>
     );
 }
