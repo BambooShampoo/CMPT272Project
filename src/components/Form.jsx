@@ -33,7 +33,7 @@ function Form() {
             
             <h2>Report Emergency</h2>
     
-            <div>
+            <div className='form-content'>
             <label>
                 Name:
                 <input
@@ -46,7 +46,7 @@ function Form() {
                 </label>
             </div>
     
-            <div>
+            <div className='form-content'>
                 <label>
                 Phone:
                 <input
@@ -59,7 +59,7 @@ function Form() {
                 </label>
             </div>
     
-            <div>
+            <div className='form-content'>
                 <label>
                 Nature of Emergency:
                 <select
@@ -79,7 +79,7 @@ function Form() {
             </div>
             {/* If the emergency type is set to other, display a textbox to specify*/}
             {formData.emergencyType === 'other' && (
-                <div>
+                <div className='form-content'>
                 <label>
                     Please specify:
                     <input
@@ -93,7 +93,7 @@ function Form() {
                 </div>
             )}
         
-            <div>
+            <div className='form-content'>
                 <label>
                 Location:
                 <input
@@ -106,7 +106,7 @@ function Form() {
                 </label>
             </div>
         
-            <div>
+            <div className='form-content'>
                 <label>
                 Picture Link (optional):
                 <input
@@ -118,7 +118,7 @@ function Form() {
                 </label>
             </div>
         
-            <div>
+            <div className='form-content'>
                 <label>
                 Comments:
                 <textarea
