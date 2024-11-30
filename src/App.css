@@ -75,6 +75,14 @@ body {
   background-color: white;
 }
 
+.emergency-report *:not(h2) {
+  line-height: 2;
+}
+
+.emergency-report input {
+  line-height: 1;
+}
+
 .list {
   margin: 4em 12em;
 }
@@ -136,3 +144,4 @@ body {
 #header a:hover {
   color: gray;
 }
+
