@@ -84,7 +84,8 @@ function Form() {
     
             <div className='form-content'>
                 <label>Name:</label>
-                <input
+                <input 
+                    className='form-input'
                     type="text"
                     name="name"
                     value={formData.name}
@@ -96,6 +97,7 @@ function Form() {
             <div className='form-content'>
                 <label>Phone:</label>
                 <input
+                    className='form-input'
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -106,7 +108,8 @@ function Form() {
     
             <div className='form-content'>
                 <label>Nature of Emergency:</label>
-                <select
+                <select 
+                    className='form-input'
                     name="emergencyType"
                     value={formData.emergencyType}
                     onChange={handleChange}
@@ -125,7 +128,8 @@ function Form() {
             {formData.emergencyType === 'other' && (
                 <div className='form-content'>
                     <label>Please specify:</label>
-                    <input
+                    <input 
+                    className='form-input'
                     type="text"
                     name="otherEmergency"
                     value={formData.otherEmergency}
@@ -138,6 +142,7 @@ function Form() {
             <div className='form-content'>
                 <label>Location:</label>
                 <input
+                    className='form-input'
                     type="text"
                     name="location"
                     value={formData.location}
@@ -149,6 +154,7 @@ function Form() {
             <div className='form-content'>
                 <label>Picture Link (optional):</label>
                 <input
+                    className='form-input'
                     type="url"
                     name="pictureLink"
                     value={formData.pictureLink}
@@ -159,13 +165,15 @@ function Form() {
             <div className='form-content'>
                 <label>Comments:</label>
                 <textarea
+                    id='comments'
+                    className='form-input'
                     name="comments"
                     value={formData.comments}
                     onChange={handleChange}
                 ></textarea>
             </div>
         
-            <button type="submit">Submit Report</button>
+            <button type="submit" id='submit'>Submit Report</button>
             </form>
         );
 }
