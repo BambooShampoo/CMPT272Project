@@ -19,23 +19,6 @@ body {
   color: white;
 }
 
-.login-button {
-  padding: 1em 2em;
-
-  border-style: none;
-  border-radius: 1em;
-
-  font: inherit;
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
-  background-color: #2c82c9;
-}
-
-.login-button:hover {
-  background-color: #0b4472;
-}
-
 .map-and-form-container {
   display: flex;
   align-items: center;
