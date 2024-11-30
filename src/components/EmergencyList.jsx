@@ -6,10 +6,28 @@ function EmergencyList() {
     const fetchItems = () => {
         const emergencies = localStorage.getItem('emergencies');
         setItems(emergencies ? JSON.parse(emergencies) : []);
+
     }
+    
+    const loadDataOnce = () => {
+        if (!localStorage.getItem('hasLoadedEmergencyData')) { 
+            fetch('/preload.json')
+                .then(response => response.json())
+                .then(data => {
+                    const existingData = JSON.parse(localStorage.getItem('emergencies')) || [];
+                    const updatedData = [...existingData, ...data];
+                    localStorage.setItem('emergencies', JSON.stringify(updatedData));
+                    localStorage.setItem('hasLoadedEmergencyData', 'true');
+                    fetchItems();
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+        }
+    };
 
     useEffect(() => {
         fetchItems();
+
+        loadDataOnce();
 
         const handleStorageUpdate = () => {
             console.log('emergencyReported event detected');

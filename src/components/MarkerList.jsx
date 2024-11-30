@@ -1,34 +1,50 @@
-import { useState, useEffect} from 'react';
-import {Marker} from 'react-leaflet';
+import { useState, useEffect } from 'react';
+import { Marker } from 'react-leaflet';
 
-function MarkerList(){
+function MarkerList() {
     const [items, setItems] = useState([]);
 
     const fetchItems = () => {
-        const emergencies = localStorage.getItem('emergencies');
-        setItems(emergencies ? JSON.parse(emergencies) : []);
+        const placedMarkers = localStorage.getItem('placedMarkers');
+        setItems(placedMarkers ? JSON.parse(placedMarkers) : []);
     }
+
+    const loadDataOnce = () => {
+        if (!localStorage.getItem('hasLoadedMarkerData')) {  
+            fetch('/preload.json')
+                .then(response => response.json())
+                .then(data => {
+                    const existingData = JSON.parse(localStorage.getItem('placedMarkers')) || [];
+                    const updatedData = [...existingData,...data];
+                    localStorage.setItem('placedMarkers', JSON.stringify(updatedData));
+                    localStorage.setItem('hasLoadedMarkerData', 'true');
+                    fetchItems();
+                })
+                .catch(error => console.error('Error fetching JSON:', error));
+        }
+    };
 
     useEffect(() => {
         fetchItems();
+        loadDataOnce();
 
         const handleStorageUpdate = () => {
-            console.log('emergencyReported event detected');
+            console.log('Marker data updated');
             fetchItems();
         };
 
-        window.addEventListener('emergencyReported', handleStorageUpdate);
+        window.addEventListener('markerUpdated', handleStorageUpdate);  
 
         return () => {
-            window.removeEventListener('emergencyReported', handleStorageUpdate);
+            window.removeEventListener('markerUpdated', handleStorageUpdate);
         };
     }, []);
 
     return (
         <>
-            {items.map((emergency) => (
-                <Marker position={[emergency.lat,emergency.lon]}>
-                {/* @Gordon for onClick of this marker,You should probably make a seperate component and jsx to display the stuff for the emergency as a seperate popup*/}
+            {items.map((marker) => (
+                <Marker key={marker.id} position={[marker.lat, marker.lon]}>
+                    {/* @Gordon: For onClick of this marker, you should probably make a separate component or JSX to display info about the emergency */}
                 </Marker>
             ))}
         </>
