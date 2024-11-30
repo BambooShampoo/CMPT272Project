@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Marker, Popup} from 'react-leaflet';
+import {Marker} from 'react-leaflet';
 
 function MarkerList(){
     const emergency = JSON.parse(localStorage.getItem('emergency'));

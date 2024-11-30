@@ -5,6 +5,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 import Form from './components/Form.jsx';
 import EmergencyList from "./components/EmergencyList";
+import MarkerList from './components/MarkerList.jsx';
 
 function App() {
   return (
@@ -19,9 +20,7 @@ function App() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={[49.278376, -122.916997]}>
-              {/* Put markers and stuff here */}
-            </Marker>
+            <MarkerList/>
           </MapContainer>
         </div>
         <Form />
