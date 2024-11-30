@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 
 function Form() {
+    const [items, setItems] = useState([]);
+    // var emergencies = [];
+    const [id, setId] = useState(0);
+
     const [formData, setFormData] = useState({
+        id: id,
         name: '',
         phone: '',
         emergencyType: '',
@@ -55,14 +60,26 @@ function Form() {
                 lon: `${coords.longitude}`
             };
 
-            console.log(JSON.stringify(submissionData));
+            // console.log(JSON.stringify(submissionData));
+
+            // set submission data to emergency
+            setItems(prevItemsArray => {
+                const temp = [...prevItemsArray, submissionData];
+                localStorage.setItem('emergencies', JSON.stringify(temp));
+                return temp;
+            });
+
+            setTimeout(() => {
+                const event = new Event('emergencyReported');
+                window.dispatchEvent(event);
+            }, 0);
 
             // Save data to localStorage
-            localStorage.setItem('emergency', JSON.stringify(submissionData));
-            alert('Emergency report submitted!');
+            setId((prevId) => prevId + 1);
 
             // Clear the form fields
             setFormData({
+                id: id+1,
                 name: '',
                 phone: '',
                 emergencyType: '',
@@ -71,6 +88,8 @@ function Form() {
                 pictureLink: '',
                 comments: '',
             });
+            
+            alert('Emergency report submitted!');
         } catch (error) {
             alert("Unable to retrieve location. Please ensure location services are enabled.");
         }
