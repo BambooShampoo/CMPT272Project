@@ -34,8 +34,7 @@ function Form() {
             <h2>Report Emergency</h2>
     
             <div className='form-content'>
-            <label>
-                Name:
+                <label>Name:</label>
                 <input
                     type="text"
                     name="name"
@@ -43,12 +42,10 @@ function Form() {
                     onChange={handleChange}
                     required
                 />
-                </label>
             </div>
-    
+
             <div className='form-content'>
-                <label>
-                Phone:
+                <label>Phone:</label>
                 <input
                     type="tel"
                     name="phone"
@@ -56,12 +53,10 @@ function Form() {
                     onChange={handleChange}
                     required
                 />
-                </label>
             </div>
     
             <div className='form-content'>
-                <label>
-                Nature of Emergency:
+                <label>Nature of Emergency:</label>
                 <select
                     name="emergencyType"
                     value={formData.emergencyType}
@@ -75,13 +70,12 @@ function Form() {
                     <option value="medical">Medical</option>
                     <option value="other">Other</option>
                 </select>
-                </label>
             </div>
+
             {/* If the emergency type is set to other, display a textbox to specify*/}
             {formData.emergencyType === 'other' && (
                 <div className='form-content'>
-                <label>
-                    Please specify:
+                    <label>Please specify:</label>
                     <input
                     type="text"
                     name="otherEmergency"
@@ -89,13 +83,11 @@ function Form() {
                     onChange={handleChange}
                     required={formData.emergencyType === 'other'}
                     />
-                </label>
                 </div>
             )}
         
             <div className='form-content'>
-                <label>
-                Location:
+                <label>Location:</label>
                 <input
                     type="text"
                     name="location"
@@ -103,30 +95,25 @@ function Form() {
                     onChange={handleChange}
                     required
                 />
-                </label>
             </div>
         
             <div className='form-content'>
-                <label>
-                Picture Link (optional):
+                <label>Picture Link (optional):</label>
                 <input
                     type="url"
                     name="pictureLink"
                     value={formData.pictureLink}
                     onChange={handleChange}
                 />
-                </label>
             </div>
         
             <div className='form-content'>
-                <label>
-                Comments:
+                <label>Comments:</label>
                 <textarea
                     name="comments"
                     value={formData.comments}
                     onChange={handleChange}
                 ></textarea>
-                </label>
             </div>
         
             <button type="submit">Submit Report</button>

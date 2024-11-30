@@ -83,6 +83,14 @@ body {
   line-height: 1;
 }
 
+.form-content {
+  display: flex;
+}
+
+.form-content * {
+  flex-grow: 1;
+}
+
 .list {
   margin: 4em 12em;
 }
