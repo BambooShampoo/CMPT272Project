@@ -11,22 +11,71 @@ function Form() {
         comments: '',
         });
 
+    const [location, setLocation] = useState({ latitude: null, longitude: null });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
         };
 
-    const handleSubmit = (e) => {
+    // Function to get the users current location
+    const getGeolocation = async () => {
+        return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude,
+                        });
+                    },
+                    (error) => {
+                        console.error("Geolocation error:", error);
+                        reject(error);
+                    }
+                );
+            } else {
+                reject(new Error("Geolocation is not supported by this browser."));
+            }
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        
         e.preventDefault();
-        const submissionData = {
-            ...formData,
-            time: new Date().toISOString(), // Logs the current date and time in ISO format
-            status: "OPEN", // Status set to 'OPEN'
-        };
-        // console.log('Form submitted:', submissionData);
-        localStorage.setItem('emergency', JSON.stringify(submissionData));
-        alert('Emergency report submitted!');
-        };
+        try {
+            const coords = await getGeolocation(); // Get the user's location
+            setLocation(coords);
+
+            const submissionData = {
+                ...formData,
+                time: new Date().toISOString(), // Logs the current date and time in ISO format
+                status: "OPEN", // Status set to 'OPEN'
+                lat: `${coords.latitude}`, 
+                lon: `${coords.longitude}`
+            };
+
+            console.log(JSON.stringify(submissionData));
+
+            // Save data to localStorage
+            localStorage.setItem('emergency', JSON.stringify(submissionData));
+            alert('Emergency report submitted!');
+
+            // Clear the form fields
+            setFormData({
+                name: '',
+                phone: '',
+                emergencyType: '',
+                otherEmergency: '',
+                location: '',
+                pictureLink: '',
+                comments: '',
+            });
+        } catch (error) {
+            alert("Unable to retrieve location. Please ensure location services are enabled.");
+        }
+        
+    };
 
     return (
         <form className="emergency-report" onSubmit={handleSubmit}>
