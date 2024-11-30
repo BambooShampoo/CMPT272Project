@@ -100,6 +100,7 @@ function Form() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
+                    pattern="^\d{10}$"
                     required
                 />
             </div>
