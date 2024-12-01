@@ -31,6 +31,12 @@ body {
 @media (max-width: 1600px) {
   .map-and-form-container {
     flex-direction: column;
+    gap: 2em;
+    margin-bottom: 2em;
+  }
+
+  .list {
+    margin-top: 0;
   }
 }
 

@@ -92,7 +92,13 @@ function Map() {
 
     return (
         <>
-            <MapContainer className="map" center={[49.275923, -122.913254]} zoom={10} style={{ height: '100%', width: '100%' }}>
+            <MapContainer 
+                className="map" 
+                center={[49.275923, -122.913254]} 
+                zoom={10} 
+                style={{ height: '100%', width: '100%' }} 
+                minZoom={5}
+            >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
