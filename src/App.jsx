@@ -23,6 +23,7 @@ const storePasswordManually = async () => {
 storePasswordManually();
 
 function App() {
+  const [activeMarkerId, setActiveMarkerId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState('');
   const handlePasswordProtection = () => {
@@ -62,11 +63,11 @@ function App() {
 
       <div className="map-and-form-container">
         <div className="map-container">
-          <Map/>
+        <Map activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId}/>
         </div>
         <Form />
       </div>
-      <EmergencyList handlePasswordProtection={handlePasswordProtection}/>
+      <EmergencyList handlePasswordProtection={handlePasswordProtection} activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId}/>
       <PasswordModal
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}

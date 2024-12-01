@@ -1,8 +1,32 @@
 import { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
+import L from 'leaflet';
 
-function Map() {
+// Define default and red icons
+const defaultIcon = new L.Icon({
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    shadowSize: [41, 41],
+});
+
+const redIcon = new L.Icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+    shadowSize: [41, 41],
+});
+
+function Map({ activeMarkerId, setActiveMarkerId }) {
     const [items, setItems] = useState([]);
+
+    const handleMarkerClick = (markerId) => {
+        setActiveMarkerId(markerId);
+    };
 
     const fetchItems = () => {
         const placedMarkers = localStorage.getItem('placedMarkers');
@@ -71,8 +95,6 @@ function Map() {
     
         return null;
     };
-    
-    
 
     useEffect(() => {
         fetchItems();
@@ -92,27 +114,26 @@ function Map() {
 
     return (
         <>
-            <MapContainer 
-                className="map" 
-                center={[49.275923, -122.913254]} 
-                zoom={10} 
-                style={{ height: '100%', width: '100%' }} 
-                minZoom={5}
-                maxBounds={[[60.241692, -142.038487], [48.630107, -112.076908]]}
-            >
+            <MapContainer className="map" center={[49.275923, -122.913254]} zoom={10} style={{ height: '100%', width: '100%' }} minZoom={5}maxBounds={[[60.241692, -142.038487], [48.630107, -112.076908]]}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-
                 <MapEventLogger />
                 {items.map((marker) => (
-                    <Marker key={marker.id} position={[marker.lat, marker.lon]}>
-                        {/* Add marker information here */}
+                    <Marker
+                        key={marker.id}
+                        position={[marker.lat, marker.lon]}
+                        icon={activeMarkerId === marker.id ? redIcon : defaultIcon}
+                        eventHandlers={{
+                            click: () => handleMarkerClick(marker.id)
+                        }}
+                    >
                     </Marker>
                 ))}
             </MapContainer>
         </>
+        
     );
 }
 
