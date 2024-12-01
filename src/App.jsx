@@ -12,7 +12,7 @@ const storePasswordManually = async () => {
     const response = await fetch(`https://api.hashify.net/hash/md5/hex?value=password`);
     const hash = await response.text();
     localStorage.setItem('passwordHash', hash);
-    console.log(`Password hash stored: ${cleahashnHash}`);
+    console.log(`Password hash stored: ${hash}`);
   } catch (error) {
     console.error('Error storing password hash manually: ', error);
   }
