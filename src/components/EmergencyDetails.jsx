@@ -7,7 +7,7 @@ function displayComment(comment) {
 
 function EmergencyDetails( {activeMarkerId} ) {
     if (!activeMarkerId) {
-        return <p>Select an emergency</p>
+        return <p className="emergency-text">Select an emergency</p>
     }
     return (
         <>
