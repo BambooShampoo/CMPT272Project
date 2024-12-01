@@ -98,6 +98,7 @@ function Map() {
                 zoom={10} 
                 style={{ height: '100%', width: '100%' }} 
                 minZoom={5}
+                maxBounds={[[60.241692, -142.038487], [48.630107, -112.076908]]}
             >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
