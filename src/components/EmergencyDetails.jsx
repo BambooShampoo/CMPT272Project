@@ -11,8 +11,8 @@ function EmergencyDetails( {activeMarkerId} ) {
     }
     return (
         <>
-        <img src={activeMarkerId.pictureLink}/>
-        <p>
+        <img src={activeMarkerId.pictureLink} className="emergency-image"/>
+        <p className="emergency-text">
             <b>Type:</b> {activeMarkerId.emergencyType}<br/>
             <b>Location:</b> {activeMarkerId.location}<br/>
             <b>Reported by:</b> {activeMarkerId.name} ({activeMarkerId.phone[0] + activeMarkerId.phone[1] + activeMarkerId.phone[2]}-
