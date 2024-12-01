@@ -28,6 +28,12 @@ body {
   margin: 4em 12em;
 }
 
+@media (max-width: 1600px) {
+  .map-and-form-container {
+    flex-direction: column;
+  }
+}
+
 .map-container {
   flex-grow: 1;
 
@@ -35,7 +41,6 @@ body {
 
   box-sizing: border-box;
   width: 100%;
-  max-width: calc(1 / 2 * 100vw); 
   height: 600px;
 
   border: 2px solid #ccc; 
