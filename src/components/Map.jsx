@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, useMap, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap, useMapEvents, Popup } from 'react-leaflet';
+import EmergencyDetails from './EmergencyDetails';
 
-function Map() {
+function Map({ activeMarker, setActiveMarker }) {
     const [items, setItems] = useState([]);
 
     const fetchItems = () => {
@@ -90,6 +91,10 @@ function Map() {
         };
     }, []);
 
+    const handleMarkerClick = (marker) => {
+        setActiveMarker(marker);
+    };
+
     return (
         <>
             <MapContainer 
@@ -107,11 +112,16 @@ function Map() {
 
                 <MapEventLogger />
                 {items.map((marker) => (
-                    <Marker key={marker.id} position={[marker.lat, marker.lon]}>
-                        {/* Add marker information here */}
+                    <Marker key={marker.id} position={[marker.lat, marker.lon]} eventHandlers={{click: () => handleMarkerClick(marker)}}>
+                        <Popup>
+                            <p><b>{marker.location}</b><br/>
+                            {marker.emergencyType}</p>
+                        </Popup>
+                        
                     </Marker>
                 ))}
             </MapContainer>
+            
         </>
     );
 }

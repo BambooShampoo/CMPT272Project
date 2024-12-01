@@ -227,3 +227,15 @@ body {
   margin-top: 10px;
   font-size: 0.9em;
 }
+
+.emergency-details {
+  display:inline-block;
+  text-align: left;
+  color: #246CA6;
+  background-color: white;
+  border-radius: 15px; 
+  width: 350px;
+  margin-top: 15px;
+  padding: 1em 2em;
+  margin-left: 40%;
+}

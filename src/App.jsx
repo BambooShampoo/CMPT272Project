@@ -6,6 +6,7 @@ import Form from './components/Form.jsx';
 import EmergencyList from "./components/EmergencyList";
 import Map from './components/Map.jsx';
 import PasswordModal from './components/PasswordModal';
+import EmergencyDetails from './components/EmergencyDetails.jsx';
 
 
 const storePasswordManually = async () => {
@@ -23,6 +24,7 @@ const storePasswordManually = async () => {
 storePasswordManually();
 
 function App() {
+  const [activeMarker, setActiveMarker] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState('');
   const handlePasswordProtection = () => {
@@ -62,9 +64,12 @@ function App() {
 
       <div className="map-and-form-container">
         <div className="map-container">
-          <Map/>
+          <Map activeMarker={activeMarker} setActiveMarker={setActiveMarker}/>
         </div>
         <Form />
+      </div>
+      <div className ="emergency-details">
+        <EmergencyDetails activeMarker={activeMarker}/>
       </div>
       <EmergencyList handlePasswordProtection={handlePasswordProtection}/>
       <PasswordModal
