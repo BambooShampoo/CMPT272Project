@@ -32,11 +32,7 @@ body {
   .map-and-form-container {
     flex-direction: column;
     gap: 2em;
-    margin-bottom: 2em;
-  }
-
-  .list {
-    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -126,6 +122,12 @@ body {
 
 .list {
   margin: 4em 12em;
+}
+
+@media (max-width: 1600px) {
+  .list {
+    margin: 2em 4em;
+  }
 }
 
 .emergencies {
