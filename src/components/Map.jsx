@@ -17,6 +17,7 @@ function Map() {
                     const existingData = JSON.parse(localStorage.getItem('placedMarkers')) || [];  
                     const updatedData = [...existingData, ...data];
                     localStorage.setItem('placedMarkers', JSON.stringify(updatedData));
+                    localStorage.setItem('visible', JSON.stringify(updatedData));
                     localStorage.setItem('hasLoadedMarkerData', 'true');
                     fetchItems(); 
                 })

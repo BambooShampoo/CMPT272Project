@@ -62,12 +62,23 @@ function Form() {
 
             // console.log(JSON.stringify(submissionData));
 
-            // set submission data to emergency
-            setItems(prevItemsArray => {
-                const temp = [...prevItemsArray, submissionData];
-                localStorage.setItem('emergencies', JSON.stringify(temp));
-                return temp;
-            });
+            // Get current emergencies from localStorage
+            const storedEmergencies = JSON.parse(localStorage.getItem('emergencies')) || [];
+            const updatedEmergencies = [...storedEmergencies, submissionData];
+            
+            // Save updated emergency data back to localStorage
+            localStorage.setItem('emergencies', JSON.stringify(updatedEmergencies));
+
+            // Add the new emergency to the markers as well
+            const storedMarkers = JSON.parse(localStorage.getItem('placedMarkers')) || [];
+            const updatedMarkers = [...storedMarkers, submissionData];
+            
+            // Save updated markers back to localStorage
+            localStorage.setItem('placedMarkers', JSON.stringify(updatedMarkers));
+
+            // Trigger event to notify map that data has changed
+            const event = new Event('markerUpdated');
+            window.dispatchEvent(event);
 
             setTimeout(() => {
                 const event = new Event('emergencyReported');
