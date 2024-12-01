@@ -280,13 +280,14 @@ body {
 }
 
 .emergency-details {
-  display:inline-block;
-  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #246CA6;
   background-color: white;
   border-radius: 15px; 
-  width: 350px;
-  margin-top: 15px;
+  margin-top: 25px;
+  margin-left: 15%;
+  margin-right: 15%;
   padding: 1em 2em;
-  margin-left: 40%;
 }

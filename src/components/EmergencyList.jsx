@@ -49,7 +49,7 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         <section className="list">
         <ul className="emergencies">
             {items.map((emergency) => (
-                <li key={emergency.id} onClick={() => handleItemClick(emergency.id)} style={{ cursor: 'pointer', backgroundColor: emergency.id === activeMarkerId ? 'lightgrey' : 'white' }}>
+                <li key={emergency.id} onClick={() => handleItemClick(emergency)} style={{ cursor: 'pointer', backgroundColor: emergency === activeMarkerId ? 'lightgrey' : 'white' }}>
                     <h3>{emergency.name}</h3>
                     <p>{emergency.phone}</p>
                     <p>{emergency.emergencyType}</p>
