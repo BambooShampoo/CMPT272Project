@@ -40,8 +40,8 @@ const PasswordModal = ({ isOpen, onClose, onSubmit }) => {
       {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
       {successMessage && <p className="success-message">{successMessage}</p>} {/* Display success message */}
       <div className="modal-actions">
-        <button onClick={onClose}>Cancel</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button id="modal-cancel" onClick={onClose}>Cancel</button>
+        <button id="modal-submit" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
   </div>
