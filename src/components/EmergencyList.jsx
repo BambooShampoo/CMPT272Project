@@ -1,6 +1,6 @@
 import { useState, useEffect} from 'react';
 
-function EmergencyList() {
+function EmergencyList({ handlePasswordProtection }) {
     const [items, setItems] = useState([]);
 
     const fetchItems = () => {
@@ -50,6 +50,8 @@ function EmergencyList() {
                     <p>{emergency.phone}</p>
                     <p>{emergency.emergencyType}</p>
                     <p>{emergency.location}</p>
+                    {/*I added this here to test the password, dont scream at me Ali*/}
+                    <button onClick={() => handlePasswordProtection()}>Click mee</button>
                 </li>
             ))}
         </ul>
