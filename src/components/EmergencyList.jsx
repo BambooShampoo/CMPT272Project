@@ -4,7 +4,7 @@ function EmergencyList({ handlePasswordProtection }) {
     const [items, setItems] = useState([]);
 
     const fetchItems = () => {
-        const emergencies = localStorage.getItem('emergencies');
+        const emergencies = localStorage.getItem('visible');
         setItems(emergencies ? JSON.parse(emergencies) : []);
 
     }
