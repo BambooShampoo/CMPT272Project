@@ -1,10 +1,13 @@
 import { useState, useEffect} from 'react';
+import L from 'leaflet';
 
-function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMarkerId }) {
+
+
+function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMarkerId}) {
     const [items, setItems] = useState([]);
 
     const handleItemClick = (id) => {
-        setActiveMarkerId(id); // Update active marker ID
+        setActiveMarkerId(id);
     };
 
     const fetchItems = () => {

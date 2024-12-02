@@ -121,12 +121,10 @@ function Map({ activeMarkerId, setActiveMarkerId }) {
                 />
                 <MapEventLogger />
                 {items.map((marker) => (
-                    <Marker key={marker.id} position={[marker.lat, marker.lon]} eventHandlers={{click: () => handleMarkerClick(marker)}}>
-                        <Popup>
-                            <p><b>{marker.location}</b><br/>
-                            {marker.emergencyType}</p>
+                    <Marker key={marker.id} position={[marker.lat, marker.lon]} eventHandlers={{click: () => handleMarkerClick(marker)}} icon={activeMarkerId === marker ? redIcon : defaultIcon}>
+                        <Popup> <p><b>{marker.location}</b><br/>
+                                {marker.emergencyType}</p>
                         </Popup>
-                        
                     </Marker>
                 ))}
             </MapContainer>
