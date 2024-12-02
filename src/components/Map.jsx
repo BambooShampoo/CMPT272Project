@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap, useMapEvents, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
 // Define default and red icons
@@ -64,9 +64,66 @@ function Map({ activeMarkerId, setActiveMarkerId }) {
         }
     };
 
+    const MapEventLogger = () => {
+        const map = useMap();
+        const placedMarkers = JSON.parse(localStorage.getItem('placedMarkers') || '[]');
+        
+        useMapEvents({
+            moveend: () => {
+                const bounds = map.getBounds();
+                console.log('New bounds:', bounds.toBBoxString());
+                checkMarkersWithinBounds(bounds, placedMarkers);
+            },
+            zoomend: () => {
+                const bounds = map.getBounds();
+                console.log('New bounds:', bounds.toBBoxString());
+                checkMarkersWithinBounds(bounds, placedMarkers);
+            },
+            viewreset: () => {
+                const bounds = map.getBounds();
+                console.log('New bounds:', bounds.toBBoxString());
+                checkMarkersWithinBounds(bounds, placedMarkers);
+            }
+        });
+    
+        const checkMarkersWithinBounds = (bounds, markers) => {
+            if (!Array.isArray(markers)) {
+                console.warn('Placed markers data is not an array or is corrupted.');
+                return;
+            }
+    
+            const visibleMarkers = markers.filter((marker) => {
+                if (marker && marker.lat != null && marker.lon != null) {
+                    const latLng = L.latLng(Number(marker.lat), Number(marker.lon)); 
+                    return bounds.contains(latLng);
+                }
+                return false; 
+            });
+            localStorage.setItem('visible', JSON.stringify(visibleMarkers));
+            const event = new Event('emergencyReported');
+            window.dispatchEvent(event);
+    
+            console.log(`Stored ${visibleMarkers.length} visible markers in localStorage.`);
+        };
+    
+        return null;
+    };
+
+
     useEffect(() => {
         fetchItems();
         loadDataOnce();
+
+        const handleStorageUpdate = () => {
+            console.log('Marker data updated');
+            fetchItems();
+        };
+
+        window.addEventListener('markerUpdated', handleStorageUpdate);
+        
+        return () => {
+            window.removeEventListener('markerUpdated', handleStorageUpdate);
+        };
     }, []);
 
     return (
@@ -76,6 +133,7 @@ function Map({ activeMarkerId, setActiveMarkerId }) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
+                <MapEventLogger />
                 {items.map((marker) => (
                         <Marker key={marker.id} position={[marker.lat, marker.lon]} eventHandlers={{ click: () => handleMarkerClick(marker) }} icon={activeMarkerId && activeMarkerId.id === marker.id ? redIcon : defaultIcon}/>
                 ))}
