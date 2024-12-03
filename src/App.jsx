@@ -64,7 +64,7 @@ function App() {
 
       <div className="map-and-form-container">
         <div className="map-container">
-        <Map activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId} />
+          <Map activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId} />
         </div>
         <div className='emergency-details'>
           <EmergencyDetails activeMarkerId={activeMarkerId}></EmergencyDetails>
