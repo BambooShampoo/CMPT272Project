@@ -3,13 +3,7 @@ import React from 'react';
 function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handlePasswordProtection, handleStatusChange, handleRemoval }) {
     // time = emergency.time;
     return (
-        <li
-            onClick={() => handleItemClick(emergency.id)}
-            style={{
-                cursor: 'pointer',
-                backgroundColor: emergency.id === activeMarkerId ? 'lightgrey' : 'white',
-            }}
-        >
+        <li key={emergency.id} onClick={() => handleItemClick(emergency)} style={{ cursor: 'pointer', backgroundColor: activeMarkerId && emergency.id === activeMarkerId.id ? 'lightgrey' : 'white' }}>
             {/* <h3>{emergency.name}</h3> */}
             <p>{emergency.id}</p>
             <p>{emergency.location}</p>
