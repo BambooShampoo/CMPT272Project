@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 
 function Form() {
-    const [items, setItems] = useState([]);
+    // const [items, setItems] = useState([]);
     // var emergencies = [];
-    const [id, setId] = useState(0);
+
+    const getMaxId = () => {
+        const emergencies = JSON.parse(localStorage.getItem('emergencies')) || [];
+        return emergencies.length > 0 ? Math.max(...emergencies.map(emergency => emergency.id)) : 0;
+    };
+
+    const [id, setId] = useState(getMaxId() + 1);
 
     const [formData, setFormData] = useState({
         id: id,
