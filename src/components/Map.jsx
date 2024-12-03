@@ -144,11 +144,11 @@ function Map({ activeMarkerId, setActiveMarkerId }) {
                             icon={activeMarkerId && activeMarkerId.id === marker.id ? redIcon : defaultIcon}
                         />
                 ))}
-                {popupInfo && (
+                {/* {popupInfo && (
                     <Popup position={popupInfo.position} offset={new L.Point(0, -30)}>
                         {popupInfo.content}
                     </Popup>
-                )}
+                )} */}
             </MapContainer>
         </>
     );
