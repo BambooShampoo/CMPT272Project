@@ -57,13 +57,31 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
     };
 
     const removeEmergency = (id) => {
-        const updatedItems = items.filter((item) => item.id !== id); // Filter out the item
-        // const updatedMarkers = JSON.parse(localStorage.getItem('placedMarkers')).filter((item) => item.id !== id); // Filter out the marker
-        // const updatedVisible = JSON.parse(localStorage.getItem('visible')).filter((item) => item.id !== id); // Filter out the visible marker
-        localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
-        // localStorage.setItem('placedMarkers', JSON.stringify(updatedMarkers)); // Update localStorage
+        // const updatedItems = items.filter((item) => item.id !== id); // Filter out the item
+        // // const updatedMarkers = JSON.parse(localStorage.getItem('placedMarkers')).filter((item) => item.id !== id); // Filter out the marker
+        // // const updatedVisible = JSON.parse(localStorage.getItem('visible')).filter((item) => item.id !== id); // Filter out the visible marker
+        // localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
+        // localStorage.setItem('placedMarkers', JSON.stringify(updatedItems)); // Update localStorage
+        // const updatedVisible = JSON.parse(localStorage.getItem('visible') || '[]').filter((marker) => marker.id !== id);
         // localStorage.setItem('visible', JSON.stringify(updatedVisible)); // Update localStorage
-        setItems(updatedItems); // Trigger re-render
+        // // localStorage.setItem('visible', JSON.stringify(updatedVisible)); // Update localStorage
+        // setItems(updatedItems); // Trigger re-render
+
+        const updatedEmergencies = (JSON.parse(localStorage.getItem('emergencies')) || []).filter(item => item.id !== id);
+        const updatedPlacedMarkers = (JSON.parse(localStorage.getItem('placedMarkers')) || []).filter(item => item.id !== id);
+        const updatedVisible = (JSON.parse(localStorage.getItem('visible')) || []).filter(item => item.id !== id);
+
+        // Update localStorage
+        localStorage.setItem('emergencies', JSON.stringify(updatedEmergencies));
+        localStorage.setItem('placedMarkers', JSON.stringify(updatedPlacedMarkers));
+        localStorage.setItem('visible', JSON.stringify(updatedVisible));
+
+        // Update state to trigger re-render
+        setItems(updatedVisible); // Keep only visible emergencies in the state
+        setActiveMarkerId(null);
+        // Dispatch a custom event to update the map
+        const event = new Event('markerUpdated');
+        window.dispatchEvent(event);
     };
 
     return (

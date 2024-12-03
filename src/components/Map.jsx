@@ -135,7 +135,14 @@ function Map({ activeMarkerId, setActiveMarkerId }) {
                 />
                 <MapEventLogger />
                 {items.map((marker) => (
-                        <Marker key={marker.id} position={[marker.lat, marker.lon]} eventHandlers={{ click: () => handleMarkerClick(marker) }} icon={activeMarkerId && activeMarkerId.id === marker.id ? redIcon : defaultIcon}/>
+                        <Marker 
+                            key={marker.id} 
+                            position={[marker.lat, marker.lon]} 
+                            eventHandlers={{ 
+                                click: () => handleMarkerClick(marker)
+                            }} 
+                            icon={activeMarkerId && activeMarkerId.id === marker.id ? redIcon : defaultIcon}
+                        />
                 ))}
                 {popupInfo && (
                     <Popup position={popupInfo.position} offset={new L.Point(0, -30)}>
