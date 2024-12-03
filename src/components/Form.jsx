@@ -82,6 +82,11 @@ function Form() {
             // Save updated markers back to localStorage
             localStorage.setItem('placedMarkers', JSON.stringify(updatedMarkers));
 
+            // Update the visible markers
+            const storedVisible = JSON.parse(localStorage.getItem('visible')) || [];
+            const updatedVisible = [...storedVisible, submissionData];
+            localStorage.setItem('visible', JSON.stringify(updatedVisible));
+
             // Trigger event to notify map that data has changed
             const event = new Event('markerUpdated');
             window.dispatchEvent(event);

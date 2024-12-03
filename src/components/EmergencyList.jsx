@@ -51,9 +51,9 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         if (isVerified) {
             const updatedItems = items.map((item) =>
             item.id === id ? { ...item, status: 'RESOLVED' } : item
-        );
-        localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
-        setItems(updatedItems); // Trigger re-render
+            );
+            localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
+            setItems(updatedItems); // Trigger re-render
         }
     };
 
