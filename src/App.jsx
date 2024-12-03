@@ -66,10 +66,9 @@ function App() {
         <div className="map-container">
         <Map activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId} />
         </div>
-        <Form />
-      </div>
-      <div className='emergency-details'>
-        <EmergencyDetails activeMarkerId={activeMarkerId}></EmergencyDetails>
+        <div className='emergency-details'>
+          <EmergencyDetails activeMarkerId={activeMarkerId}></EmergencyDetails>
+        </div>
       </div>
       <EmergencyList handlePasswordProtection={handlePasswordProtection} activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId}/>
       <PasswordModal
@@ -77,6 +76,7 @@ function App() {
         onClose={() => setModalOpen(false)}
         onSubmit={handlePasswordSubmission}
       />
+      <Form />
     </>
   );
 }
