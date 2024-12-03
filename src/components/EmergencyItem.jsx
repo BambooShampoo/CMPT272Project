@@ -17,9 +17,9 @@ function displayTime(time) {
 function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handlePasswordProtection, handleStatusChange, handleRemoval }) {
     // time = emergency.time;
     return (
-        <li key={emergency.id} onClick={() => handleItemClick(emergency)} style={{ cursor: 'pointer', backgroundColor: activeMarkerId && emergency.id === activeMarkerId.id ? 'lightgrey' : 'white' }}>
+        <li className='emergency-item' key={emergency.id} onClick={() => handleItemClick(emergency)} style={{ cursor: 'pointer', backgroundColor: activeMarkerId && emergency.id === activeMarkerId.id ? 'lightgrey' : 'white' }}>
             {/* <h3>{emergency.name}</h3> */}
-            <p>{emergency.id}</p>
+            <p className='emergency-id'>{emergency.id}</p>
             <p>{emergency.location}</p>
             <p>{emergency.emergencyType}</p>
             <p>{displayDate(emergency.time)} {displayTime(emergency.time)}</p>
@@ -33,13 +33,13 @@ function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handlePassw
             }}>
                 More Info
             </button> */}
-            <button onClick={(e) => {
+            <button className='list-button' onClick={(e) => {
                 e.stopPropagation(); // Prevent onClick of parent
                 handleStatusChange(emergency.id);
             }}>
                 Resolve
             </button>
-            <button onClick={(e) => {
+            <button className='list-button' onClick={(e) => {
                 e.stopPropagation(); // Prevent onClick of parent
                 handleRemoval(emergency.id);
             }}>

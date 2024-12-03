@@ -144,6 +144,12 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
 
     return (
         <section className="list">
+            <div className='list-filter-container'>
+                <button className='list-filter'>Location</button>
+                <button className='list-filter'>Type</button>
+                <button className='list-filter'>Time Reported</button>
+                <button className='list-filter'>Status</button>
+            </div>
              <ul className="emergencies">
                  {items.map((emergency) => (
                     <EmergencyItem

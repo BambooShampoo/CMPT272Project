@@ -103,7 +103,6 @@ body {
 
   margin-top: 2em;
   padding: 1em 2em;
-  width: 200px;
 
   border-style: none;
   border-radius: 1em;
@@ -113,6 +112,7 @@ body {
   font-weight: bold;
   color: white;
   background-color: #2c82c9;
+  cursor: pointer;
 }
 
 #submit:hover {
@@ -121,6 +121,57 @@ body {
 
 .list {
   margin: 4em 12em;
+  border-radius: 1em;
+  background-color: white;
+  height: fit-content;
+  overflow: hidden;
+}
+
+.emergencies {
+  display: grid;
+  color: #246CA6;
+  list-style: none;
+}
+
+.list-filter {
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  text-align: left;
+}
+
+.emergency-item {
+  border-top: 1px solid #999;
+}
+
+.emergency-item, .list-filter-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr;
+  gap: 1em;
+  justify-content: space-between;
+}
+
+.emergencies li, .list-filter-container {
+  padding: 1em;
+  background-color: white;
+}
+
+.emergency-id {
+  display: none;
+}
+
+.list-button {
+  border: none;
+  border-radius: 0.8em;
+  background-color: #2c82c9;
+  color: white;
+  cursor: pointer;
+  padding: 1em;
+}
+
+.list-button:hover {
+  background-color: #0b4472;
+  color: white;
 }
 
 @media (max-width: 1600px) {
@@ -159,22 +210,15 @@ body {
     display: flex;
     flex-direction: row;
   }
-}
 
-.emergencies {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
+  .emergency-item, .list-filter-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
 
-  color: #246CA6;
-  font-weight: bold;
-  list-style: none;
-}
-
-.emergencies li {
-  padding: 1em;
-  border-radius: 0.8em;
-  background-color: white;
+  .list-button {
+    padding: 0;
+  }
 }
 
 #header {
