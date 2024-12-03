@@ -14,8 +14,6 @@ function Modal({ isVisible, onClose, message }) {
 }
 
 function Form() {
-    // const [items, setItems] = useState([]);
-    // var emergencies = [];
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const getMaxId = () => {

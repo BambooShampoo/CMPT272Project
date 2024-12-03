@@ -97,17 +97,6 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
     };
 
     const removeEmergency = async (id) => {
-        // const updatedItems = items.filter((item) => item.id !== id); // Filter out the item
-        // // const updatedMarkers = JSON.parse(localStorage.getItem('placedMarkers')).filter((item) => item.id !== id); // Filter out the marker
-        // // const updatedVisible = JSON.parse(localStorage.getItem('visible')).filter((item) => item.id !== id); // Filter out the visible marker
-        // localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
-        // localStorage.setItem('placedMarkers', JSON.stringify(updatedItems)); // Update localStorage
-        // const updatedVisible = JSON.parse(localStorage.getItem('visible') || '[]').filter((marker) => marker.id !== id);
-        // localStorage.setItem('visible', JSON.stringify(updatedVisible)); // Update localStorage
-        // // localStorage.setItem('visible', JSON.stringify(updatedVisible)); // Update localStorage
-        // setItems(updatedItems); // Trigger re-render
-
-
         try {
             let isVerified = false;
     
@@ -155,21 +144,6 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
 
     };
 
-    // const handleFilterChange = (event) => {
-        // const { name, value } = event.target;
-        // setFilter((prevFilter) => {
-        //   if (name === 'Type') {
-        //     // Update index 0 (Emergency Type)
-        //     return [value, prevFilter[1], prevFilter[2]];
-        //   }
-        //   if (name === 'Status') {
-        //     // Update index 2 (Status)
-        //     return [prevFilter[0], prevFilter[1], value];
-        //   }
-        //   return prevFilter; // Return unchanged for other cases
-        // });
-    //   };
-
     const handleFilterChange = (event) => {
         const { name, value } = event.target;
         console.log(name, value);
@@ -178,7 +152,6 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
 
         if (name === 'Type') {
             document.getElementById('Status').value = 'All';
-            // const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
                 updatedItems = updatedItems.filter((item) => {
                 if (value === 'All') {
                     return true;
@@ -190,7 +163,6 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         }
         if (name === 'Status') {
             document.getElementById('Type').value = 'All';
-            // const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
                 updatedItems = updatedItems.filter((item) => {
                 if (value === 'All') {
                     return true;
@@ -244,7 +216,6 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
                         emergency={emergency}
                         activeMarkerId={activeMarkerId}
                         handleItemClick={handleItemClick}
-                        handlePasswordProtection={handlePasswordProtection}
                         handleStatusChange={resolveEmergency}
                         handleRemoval={removeEmergency}
                     />

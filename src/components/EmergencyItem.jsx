@@ -14,7 +14,7 @@ function displayTime(time) {
 };
 
 
-function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handlePasswordProtection, handleStatusChange, handleRemoval }) {
+function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handleStatusChange, handleRemoval }) {
     return (
         <li className='emergency-item' key={emergency.id} onClick={() => handleItemClick(emergency)} style={{ cursor: 'pointer', backgroundColor: activeMarkerId && emergency.id === activeMarkerId.id ? 'lightgrey' : 'white' }}>
             <p className='emergency-id'>{emergency.id}</p>
