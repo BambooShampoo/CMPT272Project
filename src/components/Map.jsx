@@ -37,6 +37,9 @@ function Map({ activeMarkerId, setActiveMarkerId }) {
                 ),
             });
         }
+        else {
+            setPopupInfo(null);
+        }
     }, [activeMarkerId]);
 
     const handleMarkerClick = (marker) => {
