@@ -4,8 +4,7 @@ import EmergencyItem from './EmergencyItem';
 function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMarkerId}) {
     const [items, setItems] = useState([]);
 
-    const [filter, setFilter] = useState(['All', 'Newest', 'All']);
-    const [sortOrder, setSortOrder] = useState('asc');
+    const [sortOrder, setSortOrder] = useState('desc');
 
     const handleItemClick = (id) => {
         setActiveMarkerId(id);
@@ -14,7 +13,12 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
     const fetchItems = () => {
         const emergencies = localStorage.getItem('visible');
         setItems(emergencies ? JSON.parse(emergencies) : []);
+    
+        // change id: Type and id: Status to ALL
+        document.getElementById('Type').value = 'All';
+        document.getElementById('Status').value = 'All';
 
+        setSortOrder('desc');
     }
     
     const loadDataOnce = () => {
@@ -173,6 +177,7 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         let updatedItems = JSON.parse(localStorage.getItem('emergencies'))
 
         if (name === 'Type') {
+            document.getElementById('Status').value = 'All';
             // const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
                 updatedItems = updatedItems.filter((item) => {
                 if (value === 'All') {
@@ -184,6 +189,7 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
             setItems(updatedItems);
         }
         if (name === 'Status') {
+            document.getElementById('Type').value = 'All';
             // const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
                 updatedItems = updatedItems.filter((item) => {
                 if (value === 'All') {
@@ -219,7 +225,7 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
                         <option value="other">Other</option>
                 </select>
                 </section>
-                <button className='list-filter' onClick={handleSort}>
+                <button className='list-filter sortButton' onClick={handleSort}>
                     Time Reported {sortOrder === 'desc' ? '▼' : '▲'}
                 </button>
                 <section>
