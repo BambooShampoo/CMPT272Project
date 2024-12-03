@@ -309,17 +309,20 @@ body {
 }
 
 .emergency-text {
+  line-height: 2;
   text-align: left; 
   margin: 0 auto;
   max-width: 400px; 
   background-color: white;
   border-radius: 15px;
-  padding: 15px;
+  padding: 1em;
   color: #246CA6;
 }
 
 .emergency-details {
+  box-sizing: border-box;
   text-align: center; 
   margin: 20px auto;
-  padding: 10px;
+  max-height: 880px;
+  min-width: 220px;
 }
