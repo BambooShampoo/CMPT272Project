@@ -68,6 +68,16 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
                         item.id === id ? { ...item, status: 'RESOLVED' } : item
                     );
                     localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
+
+                    // Change the item to have resolved status in placedMarkers to stop resetting the status on form submission
+                    const storedMarkers = JSON.parse(localStorage.getItem('placedMarkers')) || [];
+                    const updatedMarkers = storedMarkers.map((marker) =>
+                        marker.id === id ? { ...marker, status: 'RESOLVED' } : marker
+                    );
+                    localStorage.setItem('placedMarkers', JSON.stringify(updatedMarkers));
+
+
+
                     setItems(updatedItems); // Trigger re-render
                     console.log(`Emergency with ID ${id} resolved.`);
                     return; // Exit the function after successful resolution
