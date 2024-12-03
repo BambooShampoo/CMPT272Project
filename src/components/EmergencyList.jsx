@@ -47,13 +47,37 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
     }, []);
 
     const resolveEmergency = async (id) => {
-        const isVerified = await handlePasswordProtection(); // Wait for password verification
-        if (isVerified) {
-            const updatedItems = items.map((item) =>
-            item.id === id ? { ...item, status: 'RESOLVED' } : item
-            );
-            localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
-            setItems(updatedItems); // Trigger re-render
+        try {
+            let isVerified = false;
+    
+            // Keep prompting until the password is verified or the user cancels
+            while (!isVerified) {
+                const result = await handlePasswordProtection(); // Wait for password verification or cancellation
+    
+                if (result === "canceled") {
+                    console.log("Password prompt canceled. Exiting resolveEmergency.");
+                    return; // Exit the function on cancellation
+                }
+    
+                isVerified = result; // Update isVerified based on the result
+    
+                if (isVerified) {
+                    console.log('Password verification successful. Resolving emergency...');
+                    // Proceed with resolving the emergency
+                    const updatedItems = items.map((item) =>
+                        item.id === id ? { ...item, status: 'RESOLVED' } : item
+                    );
+                    localStorage.setItem('emergencies', JSON.stringify(updatedItems)); // Update localStorage
+                    setItems(updatedItems); // Trigger re-render
+                    console.log(`Emergency with ID ${id} resolved.`);
+                    return; // Exit the function after successful resolution
+                } else {
+                    console.log('Password verification failed. Retrying...');
+                    // Loop continues for re-prompting
+                }
+            }
+        } catch (error) {
+            console.error('Error resolving emergency:', error);
         }
     };
 
@@ -69,27 +93,50 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         // setItems(updatedItems); // Trigger re-render
 
 
-        const isVerified = await handlePasswordProtection(); // Wait for password verification
-        if (isVerified) {
-            const updatedEmergencies = (JSON.parse(localStorage.getItem('emergencies')) || []).filter(item => item.id !== id);
-            const updatedPlacedMarkers = (JSON.parse(localStorage.getItem('placedMarkers')) || []).filter(item => item.id !== id);
-            const updatedVisible = (JSON.parse(localStorage.getItem('visible')) || []).filter(item => item.id !== id);
+        try {
+            let isVerified = false;
     
-            // Update localStorage
-            localStorage.setItem('emergencies', JSON.stringify(updatedEmergencies));
-            localStorage.setItem('placedMarkers', JSON.stringify(updatedPlacedMarkers));
-            localStorage.setItem('visible', JSON.stringify(updatedVisible));
-        
-            // Update state to trigger re-render
-            setItems(updatedVisible); // Keep only visible emergencies in the state
-            setActiveMarkerId(null);
-        
-            // Dispatch a custom event to update the map
-            const event = new Event('markerUpdated');
-            window.dispatchEvent(event);
-        
-            console.log('Emergency removed!');
-        } 
+            // Keep prompting until the password is verified or the user cancels
+            while (!isVerified) {
+                const result = await handlePasswordProtection(); // Wait for password verification or cancellation
+    
+                if (result === "canceled") {
+                    console.log("Password prompt canceled. Exiting removeEmergency.");
+                    return; // Exit the function on cancellation
+                }
+    
+                isVerified = result; // Update isVerified based on the result
+    
+                if (isVerified) {
+                    console.log('Password verification successful. Removing emergency...');
+                    // Proceed with removing the emergency
+                    const updatedEmergencies = (JSON.parse(localStorage.getItem('emergencies')) || []).filter(item => item.id !== id);
+                    const updatedPlacedMarkers = (JSON.parse(localStorage.getItem('placedMarkers')) || []).filter(item => item.id !== id);
+                    const updatedVisible = (JSON.parse(localStorage.getItem('visible')) || []).filter(item => item.id !== id);
+    
+                    // Update localStorage
+                    localStorage.setItem('emergencies', JSON.stringify(updatedEmergencies));
+                    localStorage.setItem('placedMarkers', JSON.stringify(updatedPlacedMarkers));
+                    localStorage.setItem('visible', JSON.stringify(updatedVisible));
+    
+                    // Update state to trigger re-render
+                    setItems(updatedVisible); // Keep only visible emergencies in the state
+                    setActiveMarkerId(null);
+    
+                    // Dispatch a custom event to update the map
+                    const event = new Event('markerUpdated');
+                    window.dispatchEvent(event);
+    
+                    console.log(`Emergency with ID ${id} removed.`);
+                    return; // Exit the function after successful removal
+                } else {
+                    console.log('Password verification failed. Retrying...');
+                    // Loop continues for re-prompting
+                }
+            }
+        } catch (error) {
+            console.error('Error removing emergency:', error);
+        }
 
     };
 

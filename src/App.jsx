@@ -32,7 +32,12 @@ function App() {
   const handlePasswordProtection = () => {
     setModalOpen(true); // Open the modal
     return new Promise((resolve) => {
-      setResolvePromise(() => resolve); // Save the resolve function
+      setResolvePromise(() => {
+        return (isValid) => {
+          resolve(isValid);
+          setResolvePromise(null); // Reset resolvePromise after use
+        };
+      });
     });
   };
 
@@ -56,10 +61,11 @@ function App() {
 
   const handlePasswordSubmission = async (enteredPassword) => {
     const isValid = await verifyPassword(enteredPassword);
-    console.log('Password Valid:', isValid); // Debug: Check if password is valid
+    console.log('Password Valid:', isValid);
   
     if (resolvePromise) {
       resolvePromise(isValid); // Resolve the Promise with the validation result
+      setResolvePromise(null); // Reset resolvePromise
     }
     return isValid; // Return the result for modal feedback
   };
@@ -67,11 +73,11 @@ function App() {
   const handleCancel = () => {
     setModalOpen(false); // Close the modal
     if (resolvePromise) {
-      resolvePromise(false); // Resolve the Promise with `false` for cancellation
+        resolvePromise("canceled"); // Resolve with a "canceled" state
+        setResolvePromise(null); // Reset resolvePromise
     }
     setPassword(''); // Clear the password field
-  };
-
+};
   return (
     <>
       <Header />
