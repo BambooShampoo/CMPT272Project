@@ -169,8 +169,11 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         const { name, value } = event.target;
         console.log(name, value);
 
+        let updatedItems = JSON.parse(localStorage.getItem('emergencies'))
+
         if (name === 'Type') {
-            const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
+            // const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
+                updatedItems = updatedItems.filter((item) => {
                 if (value === 'All') {
                     return true;
                 }
@@ -179,12 +182,13 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
             console.log(updatedItems);
             setItems(updatedItems);
         }
-        if (name === 'Type') {
-            const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
+        if (name === 'Status') {
+            // const updatedItems = JSON.parse(localStorage.getItem('emergencies')).filter((item) => {
+                updatedItems = updatedItems.filter((item) => {
                 if (value === 'All') {
                     return true;
                 }
-                return item.emergencyType === value;
+                return item.status === value;
             });
             console.log(updatedItems);
             setItems(updatedItems);
@@ -197,7 +201,6 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         <section className="list">
             <div className='list-filter-container'>
                 <button className='list-filter'>Location</button>
-                {/* <button className='list-filter'>Type</button> */}
                 <section>
                     <label htmlFor="Type" className='list-filter-label'>Emergency Type: </label>
                     <select name="Type" id='Type' className='list-filter' onChange={handleFilterChange}>
@@ -216,7 +219,7 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
                         <option value="All">All</option>
                         <option value="OPEN">Open</option>
                         <option value="RESOLVED">Resolved</option>
-                </select>
+                    </select>
                 </section>
             </div>
              <ul className="emergencies">
