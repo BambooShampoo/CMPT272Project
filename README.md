@@ -75,4 +75,7 @@ npm run test
 ### Build application
 ```
 npm run build
-```  
+```
+
+## Contributions:
+Each Team member contributed 20%
