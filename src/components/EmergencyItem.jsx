@@ -1,5 +1,19 @@
 import React from 'react';
 
+function displayDate(time) {
+    var date = '';
+    for (let i = 0; time[i] != 'T'; i++) {
+        date += time[i];
+    }
+    return date;
+};
+
+function displayTime(time) {
+    let timeSubstring = time.split('T')[1];
+    return timeSubstring.substring(0,5);
+};
+
+
 function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handlePasswordProtection, handleStatusChange, handleRemoval }) {
     // time = emergency.time;
     return (
@@ -8,7 +22,7 @@ function EmergencyItem({ emergency, activeMarkerId, handleItemClick, handlePassw
             <p>{emergency.id}</p>
             <p>{emergency.location}</p>
             <p>{emergency.emergencyType}</p>
-            <p>{emergency.time}</p>
+            <p>{displayDate(emergency.time)} {displayTime(emergency.time)}</p>
             <p style={{ cursor: 'pointer', color: emergency.status === "OPEN" ? 'red' : 'green' }}>
                 {emergency.status}
             </p>

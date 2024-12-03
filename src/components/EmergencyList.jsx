@@ -84,6 +84,8 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         window.dispatchEvent(event);
     };
 
+    
+
     return (
         <section className="list">
              <ul className="emergencies">
