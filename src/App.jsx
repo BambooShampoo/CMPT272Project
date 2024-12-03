@@ -27,8 +27,13 @@ function App() {
   const [activeMarkerId, setActiveMarkerId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [password, setPassword] = useState('');
+  const [resolvePromise, setResolvePromise] = useState(null);
+  
   const handlePasswordProtection = () => {
-    setModalOpen(true); 
+    setModalOpen(true); // Open the modal
+    return new Promise((resolve) => {
+      setResolvePromise(() => resolve); // Save the resolve function
+    });
   };
 
   const hashPassword = async(password) => {
@@ -46,16 +51,25 @@ function App() {
     const storedHash = localStorage.getItem('passwordHash');
     const enteredHash = await hashPassword(enteredPassword);
     console.log(enteredHash);
-    if(storedHash === enteredHash){
-      return true;
-    }else{
-      return false;
-    }
+    return storedHash === enteredHash;
   };
 
   const handlePasswordSubmission = async (enteredPassword) => {
     const isValid = await verifyPassword(enteredPassword);
-    return isValid;
+    console.log('Password Valid:', isValid); // Debug: Check if password is valid
+  
+    if (resolvePromise) {
+      resolvePromise(isValid); // Resolve the Promise with the validation result
+    }
+    return isValid; // Return the result for modal feedback
+  };
+
+  const handleCancel = () => {
+    setModalOpen(false); // Close the modal
+    if (resolvePromise) {
+      resolvePromise(false); // Resolve the Promise with `false` for cancellation
+    }
+    setPassword(''); // Clear the password field
   };
 
   return (
@@ -73,7 +87,7 @@ function App() {
       <EmergencyList handlePasswordProtection={handlePasswordProtection} activeMarkerId={activeMarkerId} setActiveMarkerId={setActiveMarkerId}/>
       <PasswordModal
         isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
+        handleCancel={handleCancel}
         onSubmit={handlePasswordSubmission}
       />
       <Form />

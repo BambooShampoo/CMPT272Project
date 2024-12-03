@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const PasswordModal = ({ isOpen, onClose, onSubmit }) => {
+const PasswordModal = ({ isOpen, handleCancel, onSubmit}) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+
+  // Reset state when the modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setErrorMessage(''); 
+      setSuccessMessage('');
+      setEnteredPassword(''); 
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -18,8 +27,8 @@ const PasswordModal = ({ isOpen, onClose, onSubmit }) => {
       setTimeout(() => {
         setSuccessMessage(''); 
         setEnteredPassword(''); 
-        onClose();
-      }, 2000); // Timeout after 2 seconds
+        handleCancel();
+      }, 1000); // Timeout after 2 seconds
     } else {
       setSuccessMessage(''); 
       setErrorMessage('Incorrect password. Please try again.');
@@ -40,7 +49,7 @@ const PasswordModal = ({ isOpen, onClose, onSubmit }) => {
       {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
       {successMessage && <p className="success-message">{successMessage}</p>} {/* Display success message */}
       <div className="modal-actions">
-        <button id="modal-cancel" onClick={onClose}>Cancel</button>
+        <button id="modal-cancel" onClick={handleCancel}>Cancel</button>
         <button id="modal-submit" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
