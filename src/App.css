@@ -221,6 +221,13 @@ body {
   }
 }
 
+@media (max-width: 620px) {
+  .map-container {
+    max-width: 90vw;
+    margin: 0 1em;
+  }
+}
+
 #header {
   display: flex;
   justify-content: space-between;
