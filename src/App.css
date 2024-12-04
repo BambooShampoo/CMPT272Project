@@ -183,6 +183,35 @@ body {
   color: white;
 }
 
+@media (min-width: 1000px) {
+  .form-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 1em;
+}
+
+.form-content:nth-child(1),
+.form-content:nth-child(2),
+.form-content:nth-child(3) {
+    grid-column: 1; 
+}
+
+.form-content:nth-child(4) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.form-content:nth-child(5) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.form-content:nth-child(6) {
+    grid-column: 2; 
+}
+}
+
 @media (max-width: 1600px) {
   .map-and-form-container {
     flex-direction: column;

@@ -165,6 +165,19 @@ function Form() {
                             required
                         />
                     </div>
+
+                    <div className='form-content'>
+                        <label>Location:</label>
+                        <input
+                            className='form-input'
+                            type="text"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+
                     <div className='form-content'>
                         <label>Nature of Emergency:</label>
                         <select
@@ -198,18 +211,6 @@ function Form() {
                             />
                         </div>
                     )}
-                
-                    <div className='form-content'>
-                        <label>Location:</label>
-                        <input
-                            className='form-input'
-                            type="text"
-                            name="location"
-                            value={formData.location}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
                 
                     <div className='form-content'>
                         <label>Picture Link (optional):</label>
