@@ -253,10 +253,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
-
-  .list-button {
-    padding: 0;
-  }
 }
 
 @media (max-width: 620px) {
