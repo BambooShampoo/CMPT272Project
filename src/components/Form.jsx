@@ -1,8 +1,22 @@
 import React, { useState } from 'react';
 
+// Modal Component
+function Modal({ isVisible, onClose, message }) {
+    if (!isVisible) return null;
+
+    return (
+        <div className="modal-overlay">
+            <div className="modal">
+                <h2>{message}</h2>
+            </div>
+        </div>
+    );
+}
+
 function Form() {
     // const [items, setItems] = useState([]);
     // var emergencies = [];
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const getMaxId = () => {
         const emergencies = JSON.parse(localStorage.getItem('emergencies')) || [];
@@ -110,8 +124,11 @@ function Form() {
                 pictureLink: '',
                 comments: '',
             });
-            
-            alert('Emergency report submitted!');
+            setIsModalVisible(true);
+            // Automatically close modal after 1 second
+            setTimeout(() => {
+                setIsModalVisible(false);
+            }, 2000);
         } catch (error) {
             alert("Unable to retrieve location. Please ensure location services are enabled.");
         }
@@ -119,105 +136,111 @@ function Form() {
     };
 
     return (
-        <form className="emergency-report" onSubmit={handleSubmit}>
-            
-            <h2>Report Emergency</h2>
-    
-            <div className="form-body">
-                <div className='form-content'>
-                    <label>Name:</label>
-                    <input
-                        className='form-input'
-                        type="text"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-                <div className='form-content'>
-                    <label>Phone:</label>
-                    <input
-                        className='form-input'
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        pattern="^\d{10}$"
-                        required
-                    />
-                </div>
-                <div className='form-content'>
-                    <label>Nature of Emergency:</label>
-                    <select
-                        className='form-input'
-                        name="emergencyType"
-                        value={formData.emergencyType}
-                        onChange={handleChange}
-                        required
-                    >
-                        <option value="">Select...</option>
-                        <option value="fire">Fire</option>
-                        <option value="shooting">Shooting</option>
-                        <option value="vehicle accident">Vehicle Accident</option>
-                        <option value="medical">Medical</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-          
-
-                {/* If the emergency type is set to other, display a textbox to specify*/}
-                {formData.emergencyType === 'other' && (
+        <div>
+            <form className="emergency-report" onSubmit={handleSubmit}>
+                
+                <h2>Report Emergency</h2>
+        
+                <div className="form-body">
                     <div className='form-content'>
-                        <label>Please specify:</label>
-                        <input 
-                        className='form-input'
-                        type="text"
-                        name="otherEmergency"
-                        value={formData.otherEmergency}
-                        onChange={handleChange}
-                        required={formData.emergencyType === 'other'}
+                        <label>Name:</label>
+                        <input
+                            className='form-input'
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
                         />
                     </div>
-                )}
+                    <div className='form-content'>
+                        <label>Phone:</label>
+                        <input
+                            className='form-input'
+                            type="tel"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleChange}
+                            pattern="^\d{10}$"
+                            required
+                        />
+                    </div>
+                    <div className='form-content'>
+                        <label>Nature of Emergency:</label>
+                        <select
+                            className='form-input'
+                            name="emergencyType"
+                            value={formData.emergencyType}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Select...</option>
+                            <option value="fire">Fire</option>
+                            <option value="shooting">Shooting</option>
+                            <option value="vehicle accident">Vehicle Accident</option>
+                            <option value="medical">Medical</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
             
-                <div className='form-content'>
-                    <label>Location:</label>
-                    <input
-                        className='form-input'
-                        type="text"
-                        name="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        required
-                    />
+
+                    {/* If the emergency type is set to other, display a textbox to specify*/}
+                    {formData.emergencyType === 'other' && (
+                        <div className='form-content'>
+                            <label>Please specify:</label>
+                            <input 
+                            className='form-input'
+                            type="text"
+                            name="otherEmergency"
+                            value={formData.otherEmergency}
+                            onChange={handleChange}
+                            required={formData.emergencyType === 'other'}
+                            />
+                        </div>
+                    )}
+                
+                    <div className='form-content'>
+                        <label>Location:</label>
+                        <input
+                            className='form-input'
+                            type="text"
+                            name="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                
+                    <div className='form-content'>
+                        <label>Picture Link (optional):</label>
+                        <input
+                            className='form-input'
+                            type="url"
+                            name="pictureLink"
+                            value={formData.pictureLink}
+                            onChange={handleChange}
+                        />
+                    </div>
+                
+                    <div className='form-content'>
+                        <label>Comments:</label>
+                        <textarea
+                            id='comments'
+                            className='form-input'
+                            name="comments"
+                            value={formData.comments}
+                            onChange={handleChange}
+                        ></textarea>
+                    </div>
                 </div>
-            
-                <div className='form-content'>
-                    <label>Picture Link (optional):</label>
-                    <input
-                        className='form-input'
-                        type="url"
-                        name="pictureLink"
-                        value={formData.pictureLink}
-                        onChange={handleChange}
-                    />
-                </div>
-            
-                <div className='form-content'>
-                    <label>Comments:</label>
-                    <textarea
-                        id='comments'
-                        className='form-input'
-                        name="comments"
-                        value={formData.comments}
-                        onChange={handleChange}
-                    ></textarea>
-                </div>
+                
+                <button type="submit" id='submit'>Submit Report</button>
+                </form>
+                <Modal
+                isVisible={isModalVisible}
+                message="Form submitted successfully!"
+                />
             </div>
-            
-            <button type="submit" id='submit'>Submit Report</button>
-            </form>
         );
 }
 
