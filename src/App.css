@@ -140,6 +140,14 @@ body {
   text-align: left;
 }
 
+.list-filter-label {
+  font-size: small;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+  text-align: left;
+}
+
 .emergency-item {
   border-top: 1px solid #999;
 }
@@ -149,6 +157,7 @@ body {
   grid-template-columns: 2fr 2fr 2fr 1fr 1fr 1fr;
   gap: 1em;
   justify-content: space-between;
+  align-items: center;
 }
 
 .emergencies li, .list-filter-container {
