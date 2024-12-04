@@ -256,9 +256,26 @@ body {
 }
 
 @media (max-width: 620px) {
+
+  .map-and-form-container {
+    margin: 2em;
+  }
+
   .map-container {
     max-width: 90vw;
     margin: 0 1em;
+  }
+
+  .emergency-details {
+    justify-self: center;
+  }
+
+  .list {
+    overflow: scroll;
+  }
+
+  .form-content {
+    flex-direction: column;
   }
 }
 
