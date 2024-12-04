@@ -5,6 +5,7 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
     const [items, setItems] = useState([]);
 
     const [filter, setFilter] = useState(['All', 'Newest', 'All']);
+    const [sortOrder, setSortOrder] = useState('asc');
 
     const handleItemClick = (id) => {
         setActiveMarkerId(id);
@@ -191,8 +192,14 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
         }
 
     };
-    
 
+    const handleSort = () => {
+        const newSortOrder = sortOrder === 'desc' ? 'asc' : 'desc'; 
+        const sortedItems = [...items].reverse(); 
+        setItems(sortedItems); 
+        setSortOrder(newSortOrder); 
+    };
+    
     return (
         <section className="list">
             <div className='list-filter-container'>
@@ -209,7 +216,9 @@ function EmergencyList({ handlePasswordProtection, setActiveMarkerId, activeMark
                         <option value="other">Other</option>
                 </select>
                 </section>
-                <button className='list-filter'>Time Reported</button>
+                <button className='list-filter' onClick={handleSort}>
+                    Time Reported {sortOrder === 'desc' ? '▼' : '▲'}
+                </button>
                 <section>
                     <label htmlFor="Status" className='list-filter-label'>Status: </label>
                     <select name="Status" id='Status' className='list-filter' onChange={handleFilterChange}>
